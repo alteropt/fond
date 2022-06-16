@@ -1,0 +1,239 @@
+@import './variables';
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    color: $black;
+    font-size: $regular;
+    font-family: $ffMs;
+}
+
+a {
+    text-decoration: none;
+    color: $black;
+}
+
+ul {
+    list-style-type: none;
+}
+
+textarea, input, button {
+    outline: none;
+}
+
+textarea::placeholder,
+input::placeholder {
+    font-family: $ffMs;
+}
+
+button {
+    border: none;
+    font-family: $ffMs;
+}
+
+.container {
+    padding: 0 20px;
+    margin: 0 auto;
+    max-width: 1200px;
+
+    &.hat {
+        background: url('../img/hat.svg') no-repeat center;
+        background-size: cover;
+        height: 362px;
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+
+        padding: 0;
+        margin: 0 20px;
+
+        z-index: -1;
+    }
+}
+
+@media(max-width: 768px) {
+    .container.hat {
+        margin: 0;
+    }
+}
+
+.page {
+    overflow: hidden;
+}
+
+h2 {
+    line-height: 51.2px;
+    font-size: $title;
+    font-weight: $boldFw;
+}
+
+h3 {
+    font-size: $big;
+    line-height: 43.88px;
+    font-weight: $boldFw;
+}
+
+h4 {
+    font-size: 24px;
+    line-height: 29.26px;
+    font-weight: $boldFw;
+}
+
+h5 {
+    font-size: 20px;
+    line-height: 24.38px;
+    font-weight: $boldFw;
+}
+
+h6 {
+    font-size: 16px;
+    line-height: 32px;
+    font-weight: $boldFw;
+}
+
+.btn.btn--more {
+    width: 200px;
+    padding: 16px 17px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    color: $white;
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: $boldFw;
+
+    background-color: $blue;
+    box-shadow: 0px 10px 25px rgba(83, 177, 255, 0.5);
+    border-radius: 9px;
+    cursor: pointer;
+
+    transition: transform .2s linear;
+
+    &:hover {
+        transform: scale(1.02);
+    }
+}
+
+@media(max-width: 768px) {
+    a.btn.btn--more {
+        width: 175px;
+    }
+}
+
+a.link {
+    transition: color .2s linear;
+    position: relative;
+
+    &::after {
+        content: '';
+
+        display: block;
+        width: 0;
+        height: 2px;
+        background-color: $blue;
+
+        position: absolute;
+        bottom: -3px;
+        left: 0;
+
+        transition: width .2s linear;
+    }
+    
+    &:hover {
+        color: $blue;
+
+        &::after {
+            width: 100%;
+        }
+    }
+}
+
+.burger {
+	width: 30px;
+	height: 20px;
+	position: relative;
+	display: none;
+	user-select: none;
+
+    &::before, &::after {
+        position: absolute;
+        height: 2px;
+        width: 100%;
+        content: '';
+        background-color: $blue;
+        transition: transform .2s linear,
+        top .2s linear;
+    }
+
+    &::before {
+        top: 0;
+    }
+
+    &::after {
+        bottom: 0;
+    }
+
+    span {
+        position: absolute;
+        background-color: $blue;
+        left: 0;
+        width: 100%;
+        top: 9px;
+        height: 2px;
+        transition: width .2s linear;
+    }
+
+    &.active {
+        span {
+            width: 0;
+        }
+    }
+
+    &.active {
+        &::before {
+            transform: rotate(45deg);
+            top: 9px;
+        }
+
+        &::after {
+            transform: rotate(135deg);
+            bottom: 9px;        
+        }
+    }
+}
+
+.tab__btns {
+    button {
+        background: transparent;
+        padding: 13px 20px;
+        border: 1px solid $blue;
+        cursor: pointer;
+        line-height: 24.38px;
+        font-size: 20px;
+        font-weight: $mediumFw;
+
+        &.active {
+            color: rgba(0, 0, 0, .1);
+            border-color: rgba(0, 0, 0, .1);
+        }
+    }
+}
+
+.tab {
+    display: none;
+    flex-wrap: wrap;
+    
+    &.active {
+        display: flex;
+    }
+}
